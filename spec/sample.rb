@@ -1,4 +1,4 @@
 class Sample
-  include MongoBijou
+  include DumbDump
   attr_accessor :some_attr
 end

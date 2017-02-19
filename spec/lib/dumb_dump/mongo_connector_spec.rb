@@ -1,5 +1,5 @@
-describe MongoBijou::Client do
-  let(:mongo_client) { MongoBijou::Client.instance }
+describe DumbDump::MongoConnector do
+  let(:mongo_client) { DumbDump::MongoConnector.instance }
 
   it { mongo_client.respond_to? :client }
   it { mongo_client.respond_to? :db_name }

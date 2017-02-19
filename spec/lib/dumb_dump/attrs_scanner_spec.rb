@@ -1,10 +1,10 @@
-describe MongoBijou::Crusher do
+describe DumbDump::AttrsScanner do
   let(:sample) do
     sample = Sample.new
     sample.some_attr = 0
     sample
   end
-  let(:crusher) { MongoBijou::Crusher.new(sample) }
+  let(:crusher) { DumbDump::Crusher.new(sample) }
   let(:hash_to_crush) { { key: 'data' } }
   let(:crush_result) { { Sample_class_name: { key: 'data' } } }
   let(:to_hash_result) { { some_attr: 0 } }

@@ -1,4 +1,4 @@
-describe MongoBijou do
+describe DumbDump do
   let(:sample) { Sample.new }
   let(:id) { sample.mongo_store }
 

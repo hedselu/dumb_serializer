@@ -1,4 +1,4 @@
-describe MongoBijou::Boaster do
+describe DumbDump::Loadable do
   let(:sample) do
     sample = Sample.new
     sample.some_attr = 0

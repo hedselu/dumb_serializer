@@ -17,8 +17,8 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-Dir["#{Dir.pwd}/lib/mongo_bijou/*.rb"].each { |file| require_relative file }
-require_relative "#{Dir.pwd}/lib/mongo_bijou.rb"
+Dir["#{Dir.pwd}/lib/dumb_dump/*.rb"].each { |file| require_relative file }
+require_relative "#{Dir.pwd}/lib/dumb_dump.rb"
 require_relative 'sample'
 
 RSpec.configure do |config|

@@ -1,4 +1,4 @@
-describe MongoBijou::Murderer do
+describe DumbDump::Destroyable do
   let(:sample) do
     sample = Sample.new
     sample.some_attr = 0
