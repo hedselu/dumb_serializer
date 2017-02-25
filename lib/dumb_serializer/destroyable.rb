@@ -1,4 +1,4 @@
-module DumbDump
+module DumbSerializer
   module Destroyable
     def remove(id)
       Client.instance.client[collection_name].delete_one(_id: id)

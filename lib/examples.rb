@@ -8,12 +8,12 @@ class Engine
     @horse_power = 722
     @type = 'S'
     @manufacturer = 'Honda'
-    @kilometers = 123123123
+    @kilometers = 123_123_123
   end
 end
 
 class Car
-  include DumbDump
+  include DumbSerializer
 
   def initialize
     @engine1 = Engine.new
@@ -24,16 +24,16 @@ class Car
 end
 
 car = Car.new
-n = 50000
+n = 50_000
 array = []
 Benchmark.bm do |x|
-  x.report("insertions") do
+  x.report('insertions') do
     n.times do
       array << car.dump.inserted_id.to_s
     end
   end
 
-  x.report("loads") do
+  x.report('loads') do
     n.times do |i|
       Car.find(array[i])
     end

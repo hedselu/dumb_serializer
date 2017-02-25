@@ -3,6 +3,7 @@ GEM
   specs:
     bson (4.2.1)
     byebug (6.0.2)
+    database_cleaner (1.5.3)
     diff-lcs (1.2.5)
     mongo (2.2.7)
       bson (~> 4.0)
@@ -26,6 +27,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  database_cleaner
   mongo (~> 2.2.0)
   rspec
   yard

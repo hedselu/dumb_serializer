@@ -1,7 +1,7 @@
-module DumbDump
+module DumbSerializer
   module Loadable
     def find(id)
-      doc = find_in_db(id) #handle error on no result!
+      doc = find_in_db(id) # handle error on no result!
       doc_to_object(doc)
     end
 
@@ -16,7 +16,7 @@ module DumbDump
 
     def find_in_db(id)
       collection = MongoConnector.client[collection_name]
-      collection.find(_id: BSON::ObjectId(id)).to_a.first.to_s
+      collection.find(_id: BSON::ObjectId(id)).to_a.first
     end
 
     def doc_to_object(doc)
@@ -24,16 +24,21 @@ module DumbDump
     end
 
     def build(partial)
-      return partial unless partial.instance_of?(BSON::Document)
-      partial['vars'].each { |name, value| partial['vars'][name] = build(value) }
-      klass = class_get(partial['class'])
-      build_partial(klass, partial['vars'])
+      return partial if CORE_TYPES.include?(partial.class)
+      return partial.to_h if hash?(partial)
+      partial['dd_vars'].each { |name, value| partial['dd_vars'][name] = build(value) }
+      klass = class_get(partial['dd_class'])
+      build_partial(klass, partial['dd_vars'])
     end
 
     def build_partial(klass, vars)
       vars.each_with_object(klass.new) do |(key, value), partial|
         partial.instance_variable_set("@#{key}".to_sym, value)
       end
+    end
+
+    def hash?(object)
+      object.instance_of?(BSON::Document) && !object['dd_class']
     end
 
     def class_get(str)

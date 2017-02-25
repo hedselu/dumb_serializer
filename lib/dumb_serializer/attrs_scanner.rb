@@ -1,13 +1,13 @@
-module DumbDump
-  CORE_TYPES =
-    [Integer, Integer, Integer, String, TrueClass, FalseClass, Array, Hash, NilClass].freeze
-
+module DumbSerializer
   class AttrsScanner
+    class CoreTypeScanError < StandardError ;end
+
     def initialize(object)
       @object = object
     end
 
     def scan
+      raise CoreTypeScanError if belongs_to_core?
       recursive_build
     end
 
@@ -21,7 +21,7 @@ module DumbDump
 
     def decompose(attrs)
       attrs.each do |name, value|
-        @object = value
+        self.object = value
 
         if belongs_to_core?
           next
@@ -34,11 +34,11 @@ module DumbDump
     end
 
     def recursive_build
-      { class: object_class, vars: decompose(object_attrs) }
+      { dd_class: object_class, dd_vars: decompose(object_attrs) }
     end
 
     def non_variable_instance
-      { class: object_class }
+      { dd_class: object_class }
     end
 
     def object_class
@@ -53,6 +53,6 @@ module DumbDump
       object.instance_variables.any?
     end
 
-    attr_reader :object
+    attr_accessor :object
   end
 end
