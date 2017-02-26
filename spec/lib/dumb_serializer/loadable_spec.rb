@@ -2,7 +2,7 @@ describe DumbSerializer::Loadable do
   include_context 'test_object'
 
   describe '.find' do
-    let(:id) { object.dump.inserted_id.to_s }
+    let(:id) { object.serialize.inserted_id.to_s }
     let(:object_found) { Car.find(id) }
 
     it 'returns Car object' do
@@ -15,7 +15,7 @@ describe DumbSerializer::Loadable do
   end
 
   describe '.all' do
-    before { object.dump }
+    before { object.serialize }
 
     it 'returns array' do
       expect(Car.all).to be_a(Array)

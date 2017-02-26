@@ -3,7 +3,7 @@ describe DumbSerializer::Destroyable do
 
 
   describe '.remove' do
-    let!(:id) { object.dump.inserted_id.to_s }
+    let!(:id) { object.serialize.inserted_id.to_s }
 
     it 'removes object with given id from database' do
       expect{ Car.remove(id) }.to change{ Car.all.length }.from(1).to(0)
@@ -11,7 +11,7 @@ describe DumbSerializer::Destroyable do
   end
 
   describe '.drop' do
-    before { object.dump }
+    before { object.serialize }
 
     it 'drops collection' do
       expect{ Car.drop }.to change{ Car.all.length }.from(1).to(0)

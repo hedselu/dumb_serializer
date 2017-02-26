@@ -3,7 +3,7 @@ require 'spec_helper'
 describe DumbSerializer do
   let(:object) { Car.new }
 
-  it { expect(object).to respond_to(:dump) }
+  it { expect(object).to respond_to(:serialize) }
   it { expect(Car).to respond_to(:find) }
   it { expect(Car).to respond_to(:all) }
   it { expect(Car).to respond_to(:remove) }

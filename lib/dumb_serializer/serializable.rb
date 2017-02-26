@@ -1,6 +1,6 @@
 module DumbSerializer
   module Serializable
-    def dump
+    def serialize
       hashed = attrs_scanner.scan
       collection = MongoConnector.client[collection_name]
       collection.insert_one(hashed)
