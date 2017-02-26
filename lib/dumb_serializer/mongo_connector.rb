@@ -10,7 +10,6 @@ module DumbSerializer
 
     class << self
       attr_reader :db_config
-      attr_writer :client
 
       def client
         @client || client_setup

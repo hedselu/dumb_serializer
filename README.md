@@ -47,15 +47,13 @@ CoolClass.remove(id)
 CoolClass.drop
 ```
 ## config
-You can configure database connection with `.db_config=` by passing options like `database`, `host`, `port`. You can also pass `Mongo::Client` object if you need more advanced setup. Chosen option will override previous one.
+You can configure database connection with `.db_config=` by passing options like `database`, `host`, `port`.
 **Beware of configuration. If you set it up for one class it will influence setup of other classes that include `DumpSerializer`**.
 ```ruby
 # These are defaults
 CoolClass.db_config #=> { database: 'dumb_serializer', host: '127.0.0.1', port: '27017'}
 CoolClass.db_config = { database: 'custom' }
-CoolClass.db_config #=> { database: 'custom', host: '127.0.0.1', port: '27017'}
-CoolClass.db_config = Mongo::Client.new('mongodb://127.0.0.1:27017/testing')
-CoolClass.db_config #=> #<Mongo::Client:0x8265620 cluster=127.0.0.1:27017>                  
+CoolClass.db_config #=> { database: 'custom', host: '127.0.0.1', port: '27017'}              
 ```
 
 
