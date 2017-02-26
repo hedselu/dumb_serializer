@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 describe DumbSerializer::MongoConnector do
   let(:mongo_connector) { DumbSerializer::MongoConnector }
   let(:default_config) { DumbSerializer::MongoConnector::DEFAULT_OPTIONS }
-  let(:custom_database) {{ database: 'db_name' }}
+  let(:custom_database) { { database: 'db_name' } }
 
   after { mongo_connector.db_config = default_config.merge(TEST_DATABASE) }
 
@@ -43,7 +44,7 @@ describe DumbSerializer::MongoConnector do
 end
 
 def symbolize_keys(hash)
-  hash.each_with_object({}).each do |(k,v), cpy_hash|
+  hash.each_with_object({}).each do |(k, v), cpy_hash|
     sym_k = k.to_sym
     cpy_hash[sym_k] = v
   end

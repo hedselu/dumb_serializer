@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 module DumbSerializer
   class AttrsScanner
-    class CoreTypeScanError < StandardError ;end
+    class CoreTypeScanError < StandardError; end
 
     def initialize(object)
       @object = object
@@ -23,13 +24,8 @@ module DumbSerializer
       attrs.each do |name, value|
         self.object = value
 
-        if belongs_to_core?
-          next
-        elsif has_nested?
-          attrs[name] = recursive_build
-        else
-          attrs[name] = non_variable_instance
-        end
+        next if belongs_to_core?
+        attrs[name] = nested? ? recursive_build : non_variable_instance
       end
     end
 
@@ -49,7 +45,7 @@ module DumbSerializer
       CORE_TYPES.include?(object.class)
     end
 
-    def has_nested?
+    def nested?
       object.instance_variables.any?
     end
 

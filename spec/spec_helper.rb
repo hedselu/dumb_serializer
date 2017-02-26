@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 require 'database_cleaner'
 require_relative '../lib/dumb_serializer'
 require_relative 'support/test_classes'
 require_relative 'shared/test_object'
 
-TEST_DATABASE = { database: 'dumb_serializer_test' }
+TEST_DATABASE = { database: 'dumb_serializer_test' }.freeze
 
 RSpec.configure do |config|
   # Silence logging

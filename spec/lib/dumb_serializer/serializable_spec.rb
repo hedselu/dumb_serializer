@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 describe DumbSerializer::Serializable do
   include_context 'test_object'
 

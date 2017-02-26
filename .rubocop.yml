@@ -1,0 +1,14 @@
+AllCops:
+  TargetRubyVersion: 2.3
+Metrics/LineLength:
+  Max: 120
+Documentation:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+Style/MutableConstant:
+  Exclude:
+    - lib/dumb_serializer/mongo_connector.rb
+Lint/UnifiedInteger:
+  Enabled: false

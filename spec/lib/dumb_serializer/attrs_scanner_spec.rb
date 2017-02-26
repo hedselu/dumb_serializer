@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 describe DumbSerializer::AttrsScanner do
   include_context 'test_object'
 
@@ -5,14 +6,19 @@ describe DumbSerializer::AttrsScanner do
 
   describe '#scan' do
     context 'when custom object' do
-      let(:serialized_object) {{
-        dd_class: 'Car',
-        dd_vars: {
-          brand: 'Honda',
-          engine: {
-            dd_class: 'Engine',
-            dd_vars: { horsepower: 722 }},
-          others: {} }}}
+      let(:serialized_object) do
+        {
+          dd_class: 'Car',
+          dd_vars: {
+            brand: 'Honda',
+            engine: {
+              dd_class: 'Engine',
+              dd_vars: { horsepower: 722 }
+            },
+            others: {}
+          }
+        }
+      end
 
       it 'returns object attrbiutes as hash' do
         expect(scanner.scan).to eq(serialized_object)
@@ -23,7 +29,7 @@ describe DumbSerializer::AttrsScanner do
       let(:object) { 'CoreTypeObject' }
 
       it 'returns object attributes as hash' do
-        expect{ scanner.scan }.to raise_error DumbSerializer::AttrsScanner::CoreTypeScanError
+        expect { scanner.scan }.to raise_error DumbSerializer::AttrsScanner::CoreTypeScanError
       end
     end
   end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'mongo'
 
 module DumbSerializer
@@ -18,7 +19,7 @@ module DumbSerializer
       def db_config=(options)
         @db_config ||= DEFAULT_OPTIONS
         @db_config.merge!(options)
-        @client.close if @client
+        @client&.close
         @client = Mongo::Client.new(connection_url(@db_config))
       end
 
