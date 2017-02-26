@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.description = 'Mongo mapper for ruby objects.'
   s.authors = ['Robert Pawlas']
   s.email = 'robspawlas@gmail.com'
-  s.files = ['lib/dumb_serializer/attrs_scanner.rb', 'lib/dumb_serializer/mongo_connector.rb',
+  s.files = ['lib/dumb_serializer/attrs_scanner.rb', 'lib/dumb_serializer/mongo_connector.rb', 'lib/dumb_serializer/serializable.rb'
              'lib/dumb_serializer/destroyable.rb', 'lib/dumb_serializer/loadable.rb' 'lib/dumb_serializer.rb']
   s.homepage = ''
   s.license = 'MIT'

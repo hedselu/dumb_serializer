@@ -2,8 +2,8 @@ describe DumbSerializer::MongoConnector do
   let(:mongo_connector) { DumbSerializer::MongoConnector }
   let(:default_config) { DumbSerializer::MongoConnector::DEFAULT_OPTIONS }
   let(:custom_database) {{ database: 'db_name' }}
-  let(:test_database) {{ database: 'dumb_dump_test' }}
-  after { mongo_connector.db_config = default_config.merge(test_database) }
+
+  after { mongo_connector.db_config = default_config.merge(TEST_DATABASE) }
 
   describe '.client' do
     let(:client_options) { mongo_connector.client.options }
@@ -19,7 +19,7 @@ describe DumbSerializer::MongoConnector do
 
     context 'when config was not set' do
       it 'returns client with default config' do
-        expect(symbolized_client_options).to include(test_database)
+        expect(symbolized_client_options).to include(TEST_DATABASE)
       end
     end
   end

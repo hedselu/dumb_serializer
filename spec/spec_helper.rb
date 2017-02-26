@@ -1,10 +1,18 @@
 require 'database_cleaner'
 require_relative '../lib/dumb_serializer'
 require_relative 'support/test_classes'
+require_relative 'shared/test_object'
+
+TEST_DATABASE = { database: 'dumb_serializer_test' }
 
 RSpec.configure do |config|
   # Silence logging
   Mongo::Logger.logger.level = ::Logger::FATAL
+
+  config.before(:suite) do
+    Car.include(DumbSerializer)
+    Car.db_config = TEST_DATABASE
+  end
 
   config.before(:suite) do
     client = Mongo::Client.new('mongodb://127.0.0.1:27017/dumb_serializer_test')

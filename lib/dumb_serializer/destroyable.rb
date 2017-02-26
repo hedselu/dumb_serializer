@@ -1,11 +1,11 @@
 module DumbSerializer
   module Destroyable
     def remove(id)
-      Client.instance.client[collection_name].delete_one(_id: id)
+      MongoConnector.client[collection_name].find(_id: BSON::ObjectId(id)).delete_one
     end
 
     def drop
-      Client.instance.client[collection_name].drop
+      MongoConnector.client[collection_name].drop
     end
 
     private

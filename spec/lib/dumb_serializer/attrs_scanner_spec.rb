@@ -1,9 +1,10 @@
 describe DumbSerializer::AttrsScanner do
+  include_context 'test_object'
+
   let(:scanner) { DumbSerializer::AttrsScanner.new(object) }
 
   describe '#scan' do
     context 'when custom object' do
-      let(:object_data) {{ brand: 'Honda', engine: { horsepower: 722 }, others: {}}}
       let(:serialized_object) {{
         dd_class: 'Car',
         dd_vars: {
@@ -12,7 +13,6 @@ describe DumbSerializer::AttrsScanner do
             dd_class: 'Engine',
             dd_vars: { horsepower: 722 }},
           others: {} }}}
-      let(:object) { Car.new(object_data) }
 
       it 'returns object attrbiutes as hash' do
         expect(scanner.scan).to eq(serialized_object)
